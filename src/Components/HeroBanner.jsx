@@ -1,5 +1,4 @@
-import { Box, Stack, Typography, Button } from "@mui/material";
-import { fontSize } from "@mui/system";
+import { Box, Typography, Button } from "@mui/material";
 import HeroBannerImage from "../assets/images/banner.png";
 
 const HeroBanner = () => {
