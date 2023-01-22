@@ -34,8 +34,6 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
 
       if (Array.isArray(exercisesData)) {
         setExercises(exercisesData);
-      } else {
-        setExercises([]);
       }
     };
 
@@ -48,9 +46,11 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
         Showing Results
       </Typography>
       <Stack direction="row" sx={{ gap: { lg: "110px", sm: "50px" } }} flexWrap="wrap" justifyContent="center">
-        {currentExercises.map(exercise => (
-          <ExerciseCard key={exercise.id} exercise={exercise} />
-        ))}
+        {currentExercises.length > 0 ? (
+          currentExercises.map(exercise => <ExerciseCard key={exercise.id} exercise={exercise} />)
+        ) : (
+          <strong>Sorry, API exceeded the MONTHLY quota for Requests on free plan. Please try again later </strong>
+        )}
       </Stack>
       <Stack mt="100px" alignItems="center">
         {exercises.length > 9 && (
@@ -59,7 +59,7 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
             count={Math.ceil(exercises.length / exercisesPerPage)}
             page={currentPage}
             onChange={paginate}
-            size="large "
+            size="large"
           />
         )}
       </Stack>
