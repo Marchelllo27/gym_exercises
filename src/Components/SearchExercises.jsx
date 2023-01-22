@@ -14,7 +14,9 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
         exercisesOptions
       );
 
-      setBodyParts(["all", ...bodyPartsData]);
+      if (bodyPartsData.length > 0) {
+        setBodyParts(["all", ...bodyPartsData]);
+      }
     };
 
     fetchExercisesData();
@@ -22,18 +24,22 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
 
   const handleSearch = async () => {
     if (search) {
-      const exercisesData = await fetchData("https://exercisedb.p.rapidapi.com/exercises", exercisesOptions);
+      try {
+        const exercisesData = await fetchData("https://exercisedb.p.rapidapi.com/exercises", exercisesOptions);
 
-      const searchedExercises = exercisesData.filter(
-        exercise =>
-          exercise.name.toLowerCase().includes(search) ||
-          exercise.target.toLowerCase().includes(search) ||
-          exercise.equipment.toLowerCase().includes(search) ||
-          exercise.bodyPart.toLowerCase().includes(search)
-      );
+        const searchedExercises = exercisesData.filter(
+          exercise =>
+            exercise.name.toLowerCase().includes(search) ||
+            exercise.target.toLowerCase().includes(search) ||
+            exercise.equipment.toLowerCase().includes(search) ||
+            exercise.bodyPart.toLowerCase().includes(search)
+        );
 
-      setSearch("");
-      setExercises(searchedExercises);
+        setSearch("");
+        setExercises(searchedExercises);
+      } catch (error) {
+        alert("Sorry because of the API free plan, access to the data temporarily failed.Please try again later.");
+      }
     }
   };
 
@@ -76,9 +82,11 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
         </Button>
       </Box>
 
-      <Box sx={{ position: "relative", width: "100%", p: "20px" }}>
-        <HorizontalScrollBar data={bodyParts} bodyPart={bodyPart} setBodyPart={setBodyPart} isBodyParts  />
-      </Box>
+      {bodyParts.length > 0 && (
+        <Box sx={{ position: "relative", width: "100%", p: "20px" }}>
+          <HorizontalScrollBar data={bodyParts} bodyPart={bodyPart} setBodyPart={setBodyPart} isBodyParts />
+        </Box>
+      )}
     </Stack>
   );
 };

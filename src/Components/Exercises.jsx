@@ -11,11 +11,11 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
 
   const indexOfLastExercise = currentPage * exercisesPerPage;
   const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
+
   const currentExercises = exercises.slice(indexOfFirstExercise, indexOfLastExercise);
 
   const paginate = (e, value) => {
     setCurrentPage(value);
-    // window.scrollTo({ top: 1800, behavior: "smooth" });
     document.getElementById("results").scrollIntoView();
   };
 
@@ -31,7 +31,12 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
           exercisesOptions
         );
       }
-      setExercises(exercisesData);
+
+      if (Array.isArray(exercisesData)) {
+        setExercises(exercisesData);
+      } else {
+        setExercises([]);
+      }
     };
 
     fetchExercisesData();
