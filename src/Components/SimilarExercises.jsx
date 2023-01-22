@@ -1,7 +1,6 @@
 import { Box, Stack, Typography } from "@mui/material";
 import HorizontalScrollBar from "./HorizontalScrollBar";
 import CircularProgress from "@mui/material/CircularProgress";
-import Loader from "./Loader";
 
 const SimilarExercises = ({ targetMuscleExercises, equipmentExercises }) => {
   return (
