@@ -12,7 +12,7 @@ const ExerciseVideos = ({ videos, name }) => {
         alignItems="center"
         sx={{ flexDirection: { lg: "row" }, gap: { lg: "110px", xs: "50px" } }}
       >
-        {videos?.slice(1, 8).map((item, index) => (
+        {videos?.slice(1, 7).map((item, index) => (
           <a
             href={`https://www.youtube.com/watch?v=${item.video.videoId}`}
             key={index}

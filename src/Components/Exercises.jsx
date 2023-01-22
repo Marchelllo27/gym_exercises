@@ -15,7 +15,8 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
 
   const paginate = (e, value) => {
     setCurrentPage(value);
-    window.scrollTo({ top: 1250, behavior: "smooth" });
+    // window.scrollTo({ top: 1800, behavior: "smooth" });
+    document.getElementById("results").scrollIntoView();
   };
 
   useEffect(() => {
@@ -38,7 +39,7 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
 
   return (
     <Box id="exercises" sx={{ mt: { lg: "110px" } }} mt="50px" p="20px">
-      <Typography variant="h3" mb="46px">
+      <Typography variant="h3" mb="46px" id="results">
         Showing Results
       </Typography>
       <Stack direction="row" sx={{ gap: { lg: "110px", sm: "50px" } }} flexWrap="wrap" justifyContent="center">
